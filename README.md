@@ -1,31 +1,25 @@
-# Launch School Template Repository
+# Launch School LS180 Coursework
 
-## Instructions
+## Database Foundations
 
-1. Create a new repository from this template.
-2. Clone the repository to your local workspace.
-3. `npm install` the template’s provided dependencies.
-4. Replace this `README`s content with your modified content from one of the
-   example `README`s.
-5. Install any additional required dependencies and set them up if needed:
+These are my assignment and practice problem solutions for LS180.
 
-    Ex: For Jest...
+### Requirements
 
-    Run:
+- `postgresql`
 
-    ```console
-    npm install --save-dev jest @types/jest
-    ```
+I installed `postgresql@16` with Homebrew.
 
-    And add the following section to your `package.json`:
+```shell
+brew install postgresql@16
+```
 
-    ```json
-    {
-        // NOTE: "scripts" is a property of the top level object
-        "scripts": {
-            "test": "jest"
-        }
-    }
-    ```
+### Setup
 
-6. Use any of the example files’ header comments you’d like.
+TODO: update this section.
+
+### Sections
+
+#### Lesson 1: Introduction to the Course
+
+#### Lesson 2: Schema, Data, and SQL
