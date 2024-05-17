@@ -17,34 +17,9 @@ CREATE TABLE directors (
 )
 ;
 
-/*
-Create temp sequence to keep directors in their `films` table order when they're
-inserted into `directors`.
-*/
--- @label create temp sequence
-CREATE SEQUENCE temp_sequence
-;
-
--- @label reset temp_sequence
-SELECT
-  setval('temp_sequence', 1, FALSE)
-;
-
--- @label preview directors to be inserted
-SELECT
-  director
-FROM
-  (
-    SELECT
-      nextval('temp_sequence') AS temp_id,
-      director
-    FROM
-      films
-  )
-GROUP BY
-  director
-ORDER BY
-  min(temp_id)
+-- @label pre-insert add temp directors.name UNIQUE constraint
+ALTER TABLE directors
+ADD CONSTRAINT directors_name_unique UNIQUE (name)
 ;
 
 -- @label insert directors
@@ -53,21 +28,13 @@ INSERT INTO
 SELECT
   director
 FROM
-  (
-    SELECT
-      nextval('temp_sequence') AS temp_id,
-      director
-    FROM
-      films
-  )
-GROUP BY
-  director
-ORDER BY
-  min(temp_id)
+  films
+ON CONFLICT DO NOTHING
 ;
 
--- @label drop temp sequence
-DROP SEQUENCE temp_sequence
+-- @label post-insert drop temp directors.name UNIQUE constraint
+ALTER TABLE directors
+DROP CONSTRAINT directors_name_unique
 ;
 
 -- @label view all directors
