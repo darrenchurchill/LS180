@@ -12,11 +12,10 @@
 -- @label directors and count of films directed
 SELECT
   d.name director,
-  count(f.id) num_films_directed
+  count(df.film_id) num_films_directed
 FROM
   directors d
   JOIN directors_films df ON d.id = df.director_id
-  JOIN films f ON df.film_id = f.id
 GROUP BY
   director
 ORDER BY
